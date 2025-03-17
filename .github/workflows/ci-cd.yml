@@ -80,6 +80,7 @@ jobs:
           echo "Deploying application..."
           # Comandos reais de deploy seriam usados aqui
 
+          #caso fosse usar um SMTP para envio
       - name: Notify on failure
         if: failure()
         uses: dawidd6/action-send-mail@v3

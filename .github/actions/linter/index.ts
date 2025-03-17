@@ -4,7 +4,7 @@ import { exec } from 'child_process';
 
 async function run() {
   try {
-    // Verifica se package.json existe antes de iniciar o build
+    // condicao para verificar se o package.json existe.
     if (!fs.existsSync('package.json')) {
       core.setFailed('Erro: package.json não encontrado. O build não pode ser executado.');
       return;
