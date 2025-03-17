@@ -5,14 +5,15 @@
     "main": "dist/index.js",
     "scripts": {
       "build": "tsc",
-      "lint": "eslint ."
+      "lint": "eslint --config eslint.config.js ."
     },
     "dependencies": {
       "@actions/core": "^1.10.0"
     },
     "devDependencies": {
       "typescript": "^4.9.4",
-      "eslint": "^8.29.0"
+      "eslint": "^9.22.0",
+      "@types/node": "^18.0.0"
     }
   }
   
