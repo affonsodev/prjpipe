@@ -19,7 +19,11 @@ async function run() {
       core.info(stdout);
     });
   } catch (error) {
-    core.setFailed(`Erro inesperado: ${(error as Error).message}`);
+    if (error instanceof Error) {
+      core.setFailed(`Erro inesperado: ${error.message}`);
+    } else {
+      core.setFailed('Erro desconhecido no linter.');
+    }
   }
 }
 

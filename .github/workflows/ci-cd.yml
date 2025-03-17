@@ -107,7 +107,7 @@ jobs:
         run: |
           cd .github/actions/linter
           npm install
-          npm install --save-dev @types/node eslint@9.22.0 typescript
+          npm install --save-dev @types/node eslint@9.22.0 @typescript-eslint/parser@6.0.0 @typescript-eslint/eslint-plugin@6.0.0 typescript
           npx tsc
           cd -
 
