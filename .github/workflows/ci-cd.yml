@@ -33,11 +33,14 @@ jobs:
       - name: Build application
         run: npm run build
 
+      - name: Debug build directory
+        run: ls -l ./dist
+
       - name: Save build artifact
         uses: actions/upload-artifact@v4
         with:
           name: build-artifact
-          path: ./dist
+          path: ./dist/
 
       - name: Generate tag for release
         run: |
@@ -67,6 +70,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifact
+          path: ./dist/
+
+      - name: Debug artifact directory
+        run: ls -l ./dist
 
       - name: Deploy to test environment
         run: |
@@ -109,5 +116,8 @@ jobs:
           ls -l .github/actions/linter/
           cat .github/actions/linter/eslint.config.js
 
-      - name: Run custom TypeScript linter action
-        uses: ./.github/actions/linter
+      - name: Run ESLint with explicit config path
+        run: |
+          cd .github/actions/linter
+          npx eslint --config eslint.config.js .
+          cd -
