@@ -100,9 +100,14 @@ jobs:
         run: |
           cd .github/actions/linter
           npm install
-          npm install --save-dev @types/node
+          npm install --save-dev @types/node eslint@9.22.0
           npm run build
           cd -
+
+      - name: Debug ESLint Config
+        run: |
+          ls -l .github/actions/linter/
+          cat .github/actions/linter/eslint.config.js
 
       - name: Run custom TypeScript linter action
         uses: ./.github/actions/linter
