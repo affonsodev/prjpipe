@@ -18,7 +18,7 @@ async function run() {
       }
       core.info(stdout);
     });
-  } catch (error) {
+  } catch  (error: any) {
     core.setFailed(error.message);
   }
 }
