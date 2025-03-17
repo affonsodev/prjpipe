@@ -18,12 +18,8 @@ async function run() {
       }
       core.info(stdout);
     });
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      core.setFailed(error.message);
-    } else {
-      core.setFailed('Ocorreu um erro desconhecido.');
-    }
+  } catch (error) {
+    core.setFailed(`Erro inesperado: ${(error as Error).message}`);
   }
 }
 
