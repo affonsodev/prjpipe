@@ -107,8 +107,8 @@ jobs:
         run: |
           cd .github/actions/linter
           npm install
-          npm install --save-dev @types/node eslint@9.22.0
-          npm run build
+          npm install --save-dev @types/node eslint@9.22.0 typescript
+          npx tsc
           cd -
 
       - name: Debug ESLint Config
