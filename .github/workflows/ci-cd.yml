@@ -11,9 +11,13 @@ env:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permissão para criar tags e releases
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Necessário para criar tags corretamente
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -39,8 +43,12 @@ jobs:
         run: |
           TAG_NAME="v$(date +%Y%m%d%H%M%S)"
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
+          git config --global user.email "fonsomagic@gmail.com"
+          git config --global user.name "Affonso Pereira"
           git tag $TAG_NAME
           git push origin $TAG_NAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
