@@ -1,0 +1,13 @@
+{
+    "name": "prjpipe",
+    "version": "1.0.0",
+    "description": "Projeto para CI/CD com GitHub Actions",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"No test specified\" && exit 0",
+      "build": "echo \"Building project...\" && exit 0"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+  }
+  
