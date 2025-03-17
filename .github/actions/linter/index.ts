@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as fs from 'fs';
+import { exec } from 'child_process';
 
 async function run() {
   try {
@@ -10,16 +11,19 @@ async function run() {
     }
 
     // Executa ESLint como análise estática
-    const exec = require('child_process').exec;
-    exec('npx eslint .', (error: any, stdout: string, stderr: string) => {
+    exec('npx eslint .', (error, stdout, stderr) => {
       if (error) {
         core.setFailed(`ESLint falhou: ${stderr}`);
         return;
       }
       core.info(stdout);
     });
-  } catch  (error: any) {
-    core.setFailed(error.message);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    } else {
+      core.setFailed('Ocorreu um erro desconhecido.');
+    }
   }
 }
 
